@@ -57,9 +57,13 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 35);
 	
-	var _AwesomeComponent = __webpack_require__(/*! ./AwesomeComponent.jsx */ 175);
+	var _MainNavigation = __webpack_require__(/*! ./MainNavigation.jsx */ 175);
 	
-	var _AwesomeComponent2 = _interopRequireDefault(_AwesomeComponent);
+	var _MainNavigation2 = _interopRequireDefault(_MainNavigation);
+	
+	var _MainContentView = __webpack_require__(/*! ./MainContentView.jsx */ 176);
+	
+	var _MainContentView2 = _interopRequireDefault(_MainContentView);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70,31 +74,35 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var App = function (_React$Component) {
-	  _inherits(App, _React$Component);
+	    _inherits(App, _React$Component);
 	
-	  function App() {
-	    _classCallCheck(this, App);
+	    function App() {
+	        _classCallCheck(this, App);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
-	  }
-	
-	  _createClass(App, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          ' Hello React!'
-	        ),
-	        _react2.default.createElement(_AwesomeComponent2.default, null)
-	      );
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
 	    }
-	  }]);
 	
-	  return App;
+	    _createClass(App, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'outer' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { id: 'nav' },
+	                    _react2.default.createElement(_MainNavigation2.default, null)
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { id: 'main' },
+	                    _react2.default.createElement(_MainContentView2.default, null)
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return App;
 	}(_react2.default.Component);
 	
 	(0, _reactDom.render)(_react2.default.createElement(App, null), document.getElementById('app'));
@@ -22001,12 +22009,12 @@
 
 /***/ },
 /* 175 */
-/*!*********************************************!*\
-  !*** ./src/client/app/AwesomeComponent.jsx ***!
-  \*********************************************/
+/*!*******************************************!*\
+  !*** ./src/client/app/MainNavigation.jsx ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -22026,54 +22034,91 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var AwesomeComponent = function (_React$Component) {
-	    _inherits(AwesomeComponent, _React$Component);
+	var MainNavigation = function (_React$Component) {
+	    _inherits(MainNavigation, _React$Component);
 	
-	    function AwesomeComponent(props) {
-	        _classCallCheck(this, AwesomeComponent);
+	    function MainNavigation() {
+	        _classCallCheck(this, MainNavigation);
 	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AwesomeComponent).call(this, props));
-	
-	        _this.state = { lc: 0 };
-	        _this.onLike = _this.onLike.bind(_this);
-	        return _this;
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(MainNavigation).apply(this, arguments));
 	    }
 	
-	    _createClass(AwesomeComponent, [{
-	        key: 'onLike',
-	        value: function onLike() {
-	            var lc = this.state.lc + 1;
-	            this.setState({ lc: lc });
-	        }
-	    }, {
-	        key: 'render',
+	    _createClass(MainNavigation, [{
+	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Likes : ',
+	                "div",
+	                { className: "inner-nav" },
 	                _react2.default.createElement(
-	                    'span',
-	                    null,
-	                    this.state.lc
+	                    "div",
+	                    { className: "left-align" },
+	                    "left align"
 	                ),
 	                _react2.default.createElement(
-	                    'div',
-	                    null,
-	                    _react2.default.createElement(
-	                        'button',
-	                        { onClick: this.onLike },
-	                        'Like Me'
-	                    )
+	                    "div",
+	                    { className: "right-align" },
+	                    "right align"
 	                )
 	            );
 	        }
 	    }]);
 	
-	    return AwesomeComponent;
+	    return MainNavigation;
 	}(_react2.default.Component);
 	
-	exports.default = AwesomeComponent;
+	exports.default = MainNavigation;
+
+/***/ },
+/* 176 */
+/*!********************************************!*\
+  !*** ./src/client/app/MainContentView.jsx ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var MainContentView = function (_React$Component) {
+	  _inherits(MainContentView, _React$Component);
+	
+	  function MainContentView() {
+	    _classCallCheck(this, MainContentView);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(MainContentView).apply(this, arguments));
+	  }
+	
+	  _createClass(MainContentView, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "inner-main" },
+	        "Main View"
+	      );
+	    }
+	  }]);
+	
+	  return MainContentView;
+	}(_react2.default.Component);
+	
+	exports.default = MainContentView;
 
 /***/ }
 /******/ ]);
