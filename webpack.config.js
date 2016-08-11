@@ -23,8 +23,13 @@ var config = {
         }
       },
       {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        test: /\.scss$/,
+        include: /src/,
+        loaders: [
+            'style',
+            'css',
+            'sass'
+        ]
       },
       {
         test: /\.png$/,
