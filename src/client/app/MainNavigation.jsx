@@ -9,9 +9,11 @@ class MainNavigation extends React.Component {
             <div className="logo">
                 <h1>lebweb.com</h1>
             </div>
+
+            <h3>My personal projects / sample work highlighting various open source technologies</h3>
         </div>
     );
   }
 }
 
-export default MainNavigation;
+export default MainNavigation; 
