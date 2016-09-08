@@ -1,7 +1,21 @@
+sudo: required
 language: node_js
 node_js: 
     - "node"
 
+services:
+  - docker
+
+cache:
+    directories:
+    - "$HOME/google-cloud-sdk/"
+
 install: npm install
 
 script: npm run build
+
+after_success:
+    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" us.gcr.io/brave-reason-142805;
+    docker tag jlebonitte/blog us.gcr.io/brave-reason-142805/blog
+    #gcloud docker push gcr.io/your-project-id/example-image
+    
