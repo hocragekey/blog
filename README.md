@@ -12,7 +12,9 @@ The following commands are provided in order to build / package the application.
 
 ``` npm run build ```
 
-In order to run utilizing a standalone web browser forwarding to mocks for pure UI work you can run this package navigate to the src/client directory and run the below command.  This does depend on the http-server npm module to be installed on your machine.
+In order to run utilizing a standalone web browser forwarding to mocks for pure UI work you can run this package navigate to the src/client 
+directory and run the below command.  This does depend on the http-server npm module to be installed on your machine.  You can do lots of creative
+things with this to run locally with the -P setting to forward to mock data sources
 
 ``` http-server ./ ```
 
