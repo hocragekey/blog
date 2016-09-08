@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/hocragekey/blog-ui.svg?branch=master)](https://travis-ci.org/hocragekey/blog-ui)
 # Description
 This is a standard web project being built with the following technologies React, Redux, Webpack, SASS, and Bootstrap.
 
