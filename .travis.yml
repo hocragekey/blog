@@ -12,6 +12,7 @@ script: npm run build
 
 after_success:
     - docker build -t hocragekey/blog .
+    - docker images
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" us.gcr.io/brave-reason-142805;
     - docker tag hocragekey/blog us.gcr.io/brave-reason-142805/blog
     - gcloud docker push us.gcr.io/brave-reason-142805/blog
