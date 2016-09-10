@@ -6,13 +6,6 @@ node_js:
 services:
   - docker
 
-deploy:
-  provider: gae
-
-cache:
-    directories:
-    - "$HOME/google-cloud-sdk/"
-
 install: npm install
 
 script: npm run build
