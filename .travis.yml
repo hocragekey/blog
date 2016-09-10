@@ -11,9 +11,13 @@ install: npm install
 script: npm run build
 
 after_success:
-    - docker build -t blog-ui .
-    - docker images
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" us.gcr.io/brave-reason-142805;
+    - export REPO=hocragekey/blog-ui
+    - docker build -f Dockerfile -t $REPO:$COMMIT .
+    - docker images
+    - docker tag $REPO:$COMMIT $REPO:$TAG
+    - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+    - docker push $REPO
     - docker tag blog-ui us.gcr.io/brave-reason-142805/blog
     - gcloud docker push us.gcr.io/brave-reason-142805/blog
     
