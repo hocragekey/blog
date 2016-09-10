@@ -10,7 +10,7 @@ install: npm install
 
 script: npm run build
 
-after_success:
+after_script:
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" us.gcr.io/brave-reason-142805;
     - export REPO="hocragekey/blog-ui"
     - docker build -f Dockerfile -t $REPO:$TRAVIS_COMMIT .
