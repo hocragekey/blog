@@ -11,12 +11,11 @@ install: npm install
 script: npm run build
 
 after_script:
-    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" us.gcr.io/brave-reason-142805;
-    - export REPO="hocragekey/blog-ui"
+    - export REPO="us.gcr.io/brave-reason-142805/blogui"
+    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" $REPO;
     - export V="latest"
     - docker build -f Dockerfile -t $REPO:$V .
     - docker images
-    - docker tag $REPO:$V us.gcr.io/brave-reason-142805/blog-ui/$V
     - gcloud docker --authorize-only
-    - docker push us.gcr.io/brave-reason-142805/blog-ui:latest
+    - docker push $REPO:$V
     
