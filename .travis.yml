@@ -13,10 +13,11 @@ script: npm run build
 after_script:
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" us.gcr.io/brave-reason-142805;
     - export REPO="hocragekey/blog-ui"
-    - docker build -f Dockerfile -t $REPO:$TRAVIS_COMMIT .
+    - export V="latest"
+    - docker build -f Dockerfile -t $REPO:$V .
     - docker images
-    - docker tag $REPO:$TRAVIS_COMMIT $REPO:$TAG
-    - docker tag $REPO:$TRAVIS_COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
-    - docker tag $REPO:$TRAVIS_COMMIT us.gcr.io/brave-reason-142805/blog-ui
+    - docker tag $REPO:$V $REPO:$TAG
+    - docker tag $REPO:$V $REPO:travis-$TRAVIS_BUILD_NUMBER
+    - docker tag $REPO:$V us.gcr.io/brave-reason-142805/blog-ui
     - gcloud docker push us.gcr.io/brave-reason-142805/blog-ui
     
