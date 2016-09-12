@@ -16,6 +16,6 @@ after_script:
     - export V="latest"
     - docker build -f Dockerfile -t $REPO:$V .
     - docker images
-    - docker tag $REPO:$V us.gcr.io/brave-reason-142805/blog-ui
-    - gcloud docker push us.gcr.io/brave-reason-142805/blog-ui/latest
+    - docker tag $REPO:$V us.gcr.io/brave-reason-142805/blog-ui/$V
+    - gcloud docker push us.gcr.io/brave-reason-142805/blog-ui/$V
     
