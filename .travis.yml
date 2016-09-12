@@ -17,5 +17,6 @@ after_script:
     - docker build -f Dockerfile -t $REPO:$V .
     - docker images
     - docker tag $REPO:$V us.gcr.io/brave-reason-142805/blog-ui/$V
-    - gcloud docker push us.gcr.io/brave-reason-142805/blog-ui/$V
+    - gcloud docker --authorize-only
+    - docker push us.gcr.io/brave-reason-142805/blog-ui:latest
     
