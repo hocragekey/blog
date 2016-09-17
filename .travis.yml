@@ -9,6 +9,13 @@ services:
 env:
   - CLOUDSDK_CORE_DISABLE_PROMPTS=1
   
+before_install:
+  - gcloud version
+  - gcloud components update kubectl || true
+  - curl https://sdk.cloud.google.com | bash
+  - bash -l ./.gcloud version
+  - bash -l ./.gcloud components update kubectl
+
 install: npm install
 
 script: 
@@ -16,7 +23,6 @@ script:
 
 after_success:
     - gcloud version
-    - gcloud components update kubectl || true
     - curl https://sdk.cloud.google.com | bash
     - sudo gcloud components install kubectl -q
     - export REPO="us.gcr.io/brave-reason-142805/blogui"
