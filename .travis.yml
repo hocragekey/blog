@@ -8,12 +8,12 @@ services:
 
 env:
   - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+  
 before_install:
   - gcloud version
   - gcloud components update kubectl || true
   - curl https://sdk.cloud.google.com | bash
-  - bash -l ./gcloud.sh version
-  - bash -l ./gcloud.sh components update kubectl
+  - sudo gcloud components install kubectl -q
 
 install: npm install
 
@@ -30,4 +30,3 @@ after_success:
     - docker push $REPO:$V
     - kubectl run blog-ui1 --image=us.gcr.io/brave-reason-142805/blogui/ --port=8080
     - kubectl expose deployment blog-ui1 --type="LoadBalancer"
-    
