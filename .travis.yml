@@ -8,6 +8,8 @@ services:
 
 env:
   - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+  - REPO="us.gcr.io/brave-reason-142805/blogui"
+  - V="latest"
   
 before_install:
   - gcloud version
@@ -22,12 +24,7 @@ script:
     - npm run build
 
 after_success:
-    - gcloud version
-    - curl https://sdk.cloud.google.com | bash
-    - sudo gcloud components install kubectl -q
-    - export REPO="us.gcr.io/brave-reason-142805/blogui"
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" $REPO;
-    - export V="latest"
     - docker build -f Dockerfile -t $REPO:$V .
     - docker images
     - gcloud docker --authorize-only
