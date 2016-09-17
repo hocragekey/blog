@@ -22,14 +22,13 @@ script:
 after_success:
     - export REPO="us.gcr.io/brave-reason-142805/blogui"
     - export V="latest"
-    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" $REPO || die "unable to login to remote docker repo"
-    - docker build -f Dockerfile -t $REPO:$V . || die "docker build failed"
+    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" $REPO
+    - docker build -f Dockerfile -t $REPO:$V .
     - docker images
     - bash -l ./.gcloud docker --authorize-only
     - docker push $REPO:$V || die "docker pushing of image failed"
     - export PATH=$PATH:/usr/local/share/google/google-cloud-sdk/bin/
-    - bash -l ./.gcloud auth activate-service-account --key-file keyfile.json || die "unable to authenticate service account for gcloud"
-    - bash -l ./.gcloud beta auth application-default activate-service-account --key-file keyfile.json || die "unable to authenticate service account for kubectl"
-    - bash -l ./.gcloud container clusters get-credentials blogui-1 --zone us-central1-b --project brave-reason-142805 || die "unable to get credentials for our blogui cluster"
-    - bash -l ./.kubectl set image deployment/blogui-1 blogui-1=$REPO:$V || die "unable to update blog image"
-    - bash -l ./.kubectl expose deployment blogui-1 --type="LoadBalancer" || die "unable to expose pod"
+    - bash -l ./.gcloud auth activate-service-account --key-file keyfile.json
+    - bash -l ./.gcloud container clusters get-credentials blogui-1 --zone us-central1-b --project brave-reason-142805
+    - bash -l ./.kubectl set image deployment/blogui-1 blogui-1=$REPO:$V
+    - bash -l ./.kubectl expose deployment blogui-1 --type="LoadBalancer"
