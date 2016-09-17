@@ -25,8 +25,8 @@ after_success:
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" $REPO;
     - docker build -f Dockerfile -t $REPO:$V .
     - docker images
-    - gcloud docker --authorize-only
+    - bash -l ./.gcloud docker --authorize-only
     - docker push $REPO:$V
     - export PATH=$PATH:/usr/local/share/google/google-cloud-sdk/bin/
-    - ./gcloud kubectl run blog-ui1 --image=us.gcr.io/brave-reason-142805/blogui/ --port=8080
-    - ./gcloud kubectl expose deployment blog-ui1 --type="LoadBalancer"
+    - bash -l ./.gcloud kubectl run blog-ui1 --image=us.gcr.io/brave-reason-142805/blogui/ --port=8080
+    - bash -l ./.gcloud kubectl expose deployment blog-ui1 --type="LoadBalancer"
