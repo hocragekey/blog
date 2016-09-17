@@ -8,8 +8,6 @@ services:
 
 env:
   - CLOUDSDK_CORE_DISABLE_PROMPTS=1
-  - REPO="us.gcr.io/brave-reason-142805/blogui"
-  - V="latest"
   
 before_install:
   - curl https://sdk.cloud.google.com | bash
@@ -22,6 +20,8 @@ script:
     - npm run build
 
 after_success:
+    - export REPO="us.gcr.io/brave-reason-142805/blogui"
+    - export V="latest"
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" $REPO;
     - docker build -f Dockerfile -t $REPO:$V .
     - docker images
