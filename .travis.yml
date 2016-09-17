@@ -31,5 +31,6 @@ after_success:
     - bash -l ./.gcloud auth activate-service-account --key-file keyfile.json
     - bash -l ./.gcloud container clusters get-credentials blogui-1 --zone us-central1-b --project brave-reason-142805
     - bash -l ./.gcloud config set container/use_client_certificate True
+    - bash -l ./.kubectl config set-credentials --password="$KUB_PASS" --username="$KUB_USER"
     - bash -l ./.kubectl set image deployment/blogui-1 blogui-1=$REPO:$V
     - bash -l ./.kubectl expose deployment blogui-1 --type="LoadBalancer"
