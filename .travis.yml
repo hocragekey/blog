@@ -22,6 +22,8 @@ script:
 after_success:
     - export REPO="us.gcr.io/brave-reason-142805/blogui"
     - export V="latest"
+    - touch keyfile.json
+    - echo $SERVICE_KEY > keyfile.json
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" $REPO
     - docker build -f Dockerfile -t $REPO:$V .
     - docker images
