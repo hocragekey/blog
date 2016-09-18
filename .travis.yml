@@ -24,6 +24,7 @@ after_success:
     - export V="latest"
     - touch keyfile.json
     - echo $SERVICE_KEY > keyfile.json
+    - cat keyfile.json
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" $REPO
     - docker build -f Dockerfile -t $REPO:$V .
     - docker images
