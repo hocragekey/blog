@@ -37,4 +37,3 @@ after_success:
     - bash -l ./.gcloud config set container/use_client_certificate True
     - bash -l ./.kubectl config set-credentials --password="$KUB_PASS" --username="$KUB_USER"
     - bash -l ./.kubectl set image deployment/blogui-1 blogui-1=$REPO:$V
-    - bash -l ./.kubectl expose deployment blogui-1 --type="LoadBalancer"
