@@ -6,7 +6,7 @@ class MainContentView extends React.Component {
   render () {
     return (
         <div className="inner-main">
-             <StockStreamer />
+             test update jimbo!
         </div>
     );
   }
