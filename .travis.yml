@@ -21,9 +21,10 @@ script:
 
 after_success:
     - export REPO="us.gcr.io/brave-reason-142805/blogui"
-    - export V="latest"
+    - export V="$TRAVIS_COMMIT"
     - export PATH=$PATH:/usr/local/share/google/google-cloud-sdk/bin/
     - export GOOGLE_APPLICATION_CREDENTIALS="./keyfile.json"
+    - echo "building version $V"
     - touch keyfile.json
     - echo $SERVICE_KEY > keyfile.json
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p "$(cat keyfile.json)" $REPO
