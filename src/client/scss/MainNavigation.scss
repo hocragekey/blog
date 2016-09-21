@@ -1,16 +1,13 @@
-.nav {
-    height: 200px;
-    width: 100%;
+#blog-app-nav {
+    height:75px;;
 }
 
-.logo {
-    width: 200;
-    margin: 0 auto;
+.btn-custom {
+    background-color: #0070FF;
+    color: white;
 }
 
-.menu {
-    width: 80%;
-    position: relative;
-    float: left;
-    text-align: right;
+.btn-custom:hover {
+    background-color: #005ACC;
+    color: white;
 }
