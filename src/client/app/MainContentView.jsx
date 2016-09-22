@@ -19,7 +19,6 @@ class MainContentView extends React.Component {
             }
 
             var c = me.state.cnt + 1
-            console.log("count " + c);
 
             if(c > 20) {
               c = 0;
